@@ -1,0 +1,17 @@
+:root {
+  --gray: #777;
+  --black: #353535;
+  --body: #e5e5e5;
+}
+html {
+  font-size: 62.5%;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: var(--body);
+  font-family: "Poppins", sans-serif;
+}
