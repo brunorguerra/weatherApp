@@ -1,7 +1,11 @@
 :root {
-  --gray: #777;
-  --black: #353535;
-  --body: #e5e5e5;
+  --text: #efefef;
+  --body: linear-gradient(to right, #192835, #152430);
+  --box: #353361;
+  --container: #081b25;
+
+  --input: #fff;
+  --textGlobal: #222;
 }
 html {
   font-size: 62.5%;
@@ -14,4 +18,5 @@ html {
 body {
   background: var(--body);
   font-family: "Poppins", sans-serif;
+  color: var(--text);
 }

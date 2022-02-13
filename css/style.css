@@ -3,51 +3,68 @@ main {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  gap: 4rem;
   align-items: center;
   justify-content: center;
+  padding: 6rem 3rem;
 }
 main #search {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 0 2rem;
 }
 main #search h1 {
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 500;
-  color: var(--black);
-  margin-bottom: 2rem;
+  text-align: center;
 }
 main #search .input {
-  width: 30rem;
-  height: 5rem;
-  background: #fff;
-  border-radius: 1.5rem;
-  overflow: hidden;
+  margin-top: 1.8rem;
+  max-width: 35rem;
+  height: 6rem;
 }
-main #search .input form {
+main #search form {
   display: flex;
-}
-main #search .input input,
-main #search .input form {
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
+  background: #fff;
+  border-radius: 10rem;
+  overflow: hidden;
+}
+main #search .input input[type="text"],
+main #search .input button {
+  height: 100%;
+
+  background: var(--input);
   border: none;
   outline: none;
-  padding: 0.7rem 1rem;
   font-size: 1.6rem;
+  color: var(--textGlobal);
+}
+main #search .input input[type="text"] {
+  width: 100%;
+  padding: 0 2rem;
 }
 main #search .input button {
-  width: 8rem;
-  height: 100%;
-  border: none;
-  outline: none;
+  width: 10rem;
   cursor: pointer;
-  background: var(--gray);
-  font-size: 1.6rem;
-  color: #fff;
 }
-@keyframes loading {
+
+main #alert {
+  width: 100%;
+  text-align: center;
+}
+main #alert p {
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--title);
+}
+@keyframes opacity {
   0%,
   100% {
     opacity: 0;
@@ -56,150 +73,120 @@ main #search .input button {
     opacity: 1;
   }
 }
-main #alert {
-  margin: 2rem 0;
-}
-main #alert p {
+main #alert p > span {
+  animation: opacity 0.7s infinite;
   font-size: 2rem;
-  font-weight: 500;
-  color: var(--black);
 }
-main #alert p span {
-  animation-name: loading;
-  animation-duration: 1s;
-  animation-direction: normal;
-  animation-iteration-count: infinite;
-}
-main #alert p span:nth-child(1) {
+main #alert p > span:nth-child(1) {
   animation-delay: 0.1s;
 }
-main #alert p span:nth-child(2) {
+main #alert p > span:nth-child(2) {
   animation-delay: 0.2s;
 }
-main #alert p span:nth-child(3) {
+main #alert p > span:nth-child(3) {
   animation-delay: 0.3s;
 }
+
 main #content {
   display: none;
-  width: 80rem;
-  gap: 3rem;
-  justify-content: center;
-  align-items: center;
-  background: #fff;
+  max-width: 60rem;
+  min-width: 25rem;
+  background: var(--container);
+  padding: 6rem;
+  border-radius: 5rem;
 }
-main #content .left,
-main #content .right {
-  width: 30rem;
-  height: 35rem;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-}
-main #content .left .message-time {
+main #content .main,
+main #content .footer .infos .card,
+main #content .footer .infos,
+main #content .footer .temperatureInfo .minMax {
   width: 100%;
-  align-self: left;
-  margin-bottom: 1rem;
-}
-main #content .left .message-time p {
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--gray);
-  margin-top: 2rem;
-}
-main #content .left .message-time .city {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 2rem;
 }
-main #content .left .message-time .city img {
-  width: 3rem;
+main #content .main {
+  gap: 8rem;
 }
-main #content .left .message-time h2 {
-  font-size: 2.4rem;
-  font-weight: 700;
-  color: var(--black);
-  text-align: center;
-  margin-top: 0.8rem;
-}
-main #content .left .img-weather {
+main #content .main .text,
+main #content .footer,
+main #content .footer .temperatureInfo {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-main #content .left .img-weather {
-  margin-top: 2rem;
+main #content .main .text h2 {
+  font-size: 2rem;
+  font-weight: 400;
 }
-main #content .left .img-weather img {
-  width: 12rem;
+main #content .main .text > p {
+  font-size: 7rem;
+  font-weight: 400;
 }
-main #content .left .img-weather p {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--gray);
-  margin-top: 1.5rem;
+main #content .main .text .type,
+main #content .footer .temperatureInfo .minMax {
+  background: var(--box);
+  padding: 0.6rem 1rem;
+  border-radius: 3rem;
+  white-space: nowrap;
 }
-main #content .right .infos {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+main #content .main .text .type > p {
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+main #content .main > .image > img {
+  width: 9rem;
+}
+
+main #content .footer {
+  margin-top: 6rem;
+}
+main #content .footer .temperatureInfo {
+  margin-top: 3rem;
+}
+main #content .footer .infos .card,
+main #content .footer .temperatureInfo .minMax {
   gap: 1rem;
 }
-main #content .right .infos .option {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  cursor: pointer;
-}
-main #content .right .infos .option img {
+main #content .footer .infos .card > img,
+main #content .footer .temperatureInfo .minMax img {
   width: 2rem;
 }
-main #content .right .infos p {
-  font-size: 1.8rem;
-  font-weight: 500;
-  color: var(--gray);
+main #content .footer .infos .card > span,
+main #content .footer .temperatureInfo .minMax span,
+main #content .footer .temperatureInfo p {
+  font-size: 1.6rem;
+  font-weight: 400;
 }
-main #content .right .temperature .min-max,
-main #content .right .temperature .min-max .min,
-main #content .right .temperature .min-max .max,
-main #content .right .temperature .tempActual {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+main #content .footer .temperatureInfo .sensitiveTemperature {
+  margin-top: 1.8rem;
 }
-main #content .right .temperature .min-max {
-  gap: 1rem;
+@media (max-width: 420px) {
+  main {
+    padding: 6rem 0 0;
+  }
+  main #content {
+    width: 100%;
+    border-radius: 5rem 5rem 0 0;
+  }
+  main #content > .main {
+    flex-direction: column-reverse;
+    gap: 2rem;
+  }
 }
-main #content .right .temperature .min-max .min,
-main #content .right .temperature .min-max .max {
-  gap: 0.5rem;
-  cursor: pointer;
+@media (max-width: 365px) {
+  main #content .footer .temperatureInfo .minMax {
+    flex-direction: column;
+    padding: 2rem;
+  }
+  main #content .footer .temperatureInfo .minMax span:nth-child(3),
+  main #content .footer .temperatureInfo .minMax img {
+    display: none;
+  }
 }
-main #content .right .temperature .min-max .min p,
-main #content .right .temperature .min-max .max p {
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--gray);
-}
-main #content .right .temperature .min-max .min img,
-main #content .right .temperature .min-max .max img {
-  width: 2rem;
-}
-main #content .right .temperature .tempActual {
-  flex-direction: column;
-}
-main #content .right .temperature .tempActual p {
-  font-size: 8rem;
-  font-weight: 500;
-  color: var(--black);
-}
-main #content .right .temperature .tempActual p:nth-child(2) {
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: var(--gray);
+@media (max-width: 350px) {
+  main #content .footer .infos {
+    flex-direction: column;
+  }
 }

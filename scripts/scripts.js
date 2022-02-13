@@ -16,6 +16,7 @@ document
       let json = await result.json();
 
       if (json.cod === 200) {
+        document.querySelector("main").style.height = "100%";
         mountHTML({
           city: json.name,
           country: json.sys.country,
@@ -30,6 +31,7 @@ document
           icon: json.weather[0].icon,
         });
       } else {
+        document.querySelector("main").style.height = "100vh";
         document.querySelector("main #content").style.display = "none";
         showMessageAlert("Localização não encontrada");
       }
@@ -43,53 +45,65 @@ function showMessageAlert(message) {
 function mountHTML(json) {
   let html = document.querySelector("main #content");
   showMessageAlert("");
-  html.style.display = "flex";
+  html.style.display = "inline-block";
   html.innerHTML = `
-  <div class="left">
-          <div class="message-time">
-            <p>TEMPO AGORA EM</p>
-            <div class="city">
-              <img src="./assets/locate.svg" alt="" srcset="" />
-              <h2>${json.city}, ${json.country}</h2>
-            </div>
-          </div>
-          <div class="img-weather">
-            <img src="./assets/${json.icon}.svg" alt="${json.description}" srcset="" />
-            <p>${json.description}</p>
-          </div>
-        </div>
-        <div class="right">
-          <div class="infos">
-            <div class="speed option" title="Velocidade do Vento">
-              <img src="./assets/air.svg" alt="" srcset="" />
-              <p>${json.speedWind}km/h</p>
-            </div>
-            <div class="humidity option" title="Umidade">
-              <img src="./assets/water.svg" alt="" />
-              <p>${json.humidity}%</p>
-            </div>
-            <div class="pressure option" title="Pressão">
-              <img src="./assets/thermometer.svg" alt="" srcset="" />
-              <p>${json.pressure}hPa</p>
-            </div>
-          </div>
-          <div class="temperature">
-            <div class="min-max">
-              <div class="min" title="Temperatura Mínima">
-                <img src="./assets/arrow-down.svg" alt="" srcset="" />
-                <p>${json.tempMin}°</p>
-              </div>
-              <span>-</span>
-              <div class="max" title="Temperatura Máxima">
-                <img src="./assets/arrow-up.svg" alt="" srcset="" />
-                <p>${json.tempMax}°</p>
-              </div>
-            </div>
-            <div class="tempActual">
-              <p>${json.temp}°C</p>
-              <p>Sensação Térmica: ${json.tempLike}°</p>
-            </div>
-          </div>
-        </div>
+  <div class="main">
+  <div class="text">
+    <h2 class="city" title="Cidade ${json.city}">${json.city}, ${
+    json.country
+  }</h2>
+    <p class="temperature" title="Temperatura atual de ${
+      json.city
+    }">${json.temp.toFixed(0)}°</p>
+    <div class="type" title="Clima ${json.description}">
+      <p>${json.description}</p>
+    </div>
+  </div>
+
+  <div class="image">
+    <img src="./assets/${json.icon}.svg" alt="${json.description}" title="${
+    json.description
+  }" />
+  </div>
+</div>
+
+<div class="footer">
+  <div class="infos">
+    <div class="humidity card" title="Umidade do Ar">
+      <img src="./assets/water.svg" alt="Umidade do Ar" />
+      <span class="humidityValue">${json.humidity}%</span>
+    </div>
+    <div class="pressure card" title="Pressão Atmosférica">
+      <img src="./assets/pressure.svg" alt="Pressão Atual em hPa" />
+      <span class="pressureValue">${json.pressure}hPa</span>
+    </div>
+    <div class="wind card" title="Velocidade do Vento">
+      <img src="./assets/wind.svg" alt="Velocidade do Vento" />
+      <span class="windValue">${json.speedWind}km/h</span>
+    </div>
+  </div>
+  <div class="temperatureInfo">
+    <div class="minMax">
+      <img
+        src="./assets/min-max.svg"
+        alt="Temperatura Mínima e Máxima"
+        title="Temperatura Mínima e Máxima"
+      />
+      <span class="minTemperatureValue" title="Temperatura Mínima"
+        >Mínima de ${json.tempMin.toFixed(0)}°</span
+      >
+      <span>-</span>
+      <span class="maxTemperatureValue" title="Temperatura Máxima"
+        >Máxima de ${json.tempMax.toFixed(0)}°</span
+      >
+    </div>
+    <div
+      class="sensitiveTemperature"
+      title="Sensação Térmica de ${json.city}"
+    >
+      <p>Sensação Térmica de ${json.tempLike.toFixed(0)}°</p>
+    </div>
+  </div>
+</div>
   `;
 }
