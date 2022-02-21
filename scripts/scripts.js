@@ -4,13 +4,14 @@ document
     event.preventDefault();
 
     let input = document.querySelector("main #search .input form input").value;
+    let keyApi = "7c3cbdf79b8457df3278e8e38b3727ba";
 
     if (input !== "") {
       showMessageAlert("Carregando<span>.</span><span>.</span><span>.</span>");
 
       let url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURI(
         input
-      )}&appid=7c3cbdf79b8457df3278e8e38b3727ba&units=metric&lang=pt_br`;
+      )}&appid=${keyApi}&units=metric&lang=pt_br`;
 
       let result = await fetch(url);
       let json = await result.json();
